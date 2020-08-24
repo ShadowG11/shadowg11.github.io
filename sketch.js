@@ -1,5 +1,6 @@
 function setup() {
   createCanvas(800, 400);
+  trilhaSonoraFoda.loop();
 }
 
 let xBolinha = 400;
@@ -22,6 +23,18 @@ let pontosUsuario = 0;
 let pontosOponente = 0;
 
 let hit = false;
+
+let trilhaSonoraFoda;
+let raquetada;
+let ponto;
+
+function preload(){
+  
+  trilhaSonoraFoda = loadSound("OPKL.mp3");
+  raquetada = loadSound("raquetada.mp3");
+  ponto = loadSound("ponto.mp3");
+  
+}
 
 function draw() {
   background(0);
@@ -54,12 +67,15 @@ function colisaoBorda(){
   if (xBolinha + raio > 800 || xBolinha < 0){
    
     velocidadeX = velocidadeX * (-1);
+     ponto.play();
   }
 
   if (yBolinha + raio > 400 || yBolinha < 0){
    
     velocidadeY = velocidadeY * (-1);
+    ponto.play();
   }
+
 }  
 
 function fazBarreira(x,y){
@@ -96,6 +112,8 @@ function colisaoBarreiraBiblioteca(x,y){
   if (hit){
   
     velocidadeX = velocidadeX * (-1);
+  
+  raquetada.play();  
   }
 }
 
